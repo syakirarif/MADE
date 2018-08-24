@@ -1,0 +1,20 @@
+<resources>
+    <string name="tanggal">暦日</string>
+    <string name="navigation_drawer_open">ナビゲーション・ドロワーを開く</string>
+    <string name="navigation_drawer_close">ナビゲーション・ドロワーを閉じる</string>
+    <string name="nav_header_subtitle">日本版</string>
+    <string name="nav_header_desc">ナビゲーションヘッダー</string>
+    <string name="action_settings">セッティング</string>
+    <string name="search_hint">サーチフィルム</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="film_poster">フィルムポスター</string>
+    <string name="upcoming">近日公開</string>
+    <string name="just_image">ただのイメージ</string>
+    <string name="now_playing">再生中</string>
+    <string name="language">言語</string>
+    <string name="lang_en">英語</string>
+    <string name="lang_id">インドネシア語</string>
+    <string name="lang_jp">日本語</string>
+    <string name="search">サーチ</string>
+</resources>

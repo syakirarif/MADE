@@ -1,0 +1,20 @@
+<resources>
+    <string name="tanggal">Tanggal</string>
+    <string name="navigation_drawer_open">Buka panel navigasi</string>
+    <string name="navigation_drawer_close">Tutup panel navigasi</string>
+    <string name="nav_header_desc">Header navigasi</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="search_hint">Cari Film</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="film_poster">poster film</string>
+    <string name="upcoming">Akan Datang</string>
+    <string name="just_image">hanya_gambar</string>
+    <string name="now_playing">Sedang Tayang</string>
+    <string name="nav_header_subtitle">Versi Indonesia</string>
+    <string name="language">Bahasa</string>
+    <string name="lang_en">Inggris</string>
+    <string name="lang_id">Bahasa Indonesia</string>
+    <string name="lang_jp">Jepang</string>
+    <string name="search">Pencarian</string>
+</resources>

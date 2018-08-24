@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/search_hint" />
+
+    <item
+        android:icon="@drawable/ic_language_white_24dp"
+        android:title="@string/language"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/langEN"
+                android:title="@string/lang_en" />
+            <item
+                android:id="@+id/langID"
+                android:title="@string/lang_id" />
+            <item
+                android:id="@+id/langJP"
+                android:title="@string/lang_jp" />
+        </menu>
+    </item>
+</menu>
