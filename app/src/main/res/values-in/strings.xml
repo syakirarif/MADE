@@ -3,7 +3,6 @@
     <string name="navigation_drawer_open">Buka panel navigasi</string>
     <string name="navigation_drawer_close">Tutup panel navigasi</string>
     <string name="nav_header_desc">Header navigasi</string>
-    <string name="action_settings">Pengaturan</string>
     <string name="search_hint">Cari Film</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -17,4 +16,27 @@
     <string name="lang_id">Bahasa Indonesia</string>
     <string name="lang_jp">Jepang</string>
     <string name="search">Pencarian</string>
+    <string name="favorite">Favorit</string>
+    <string name="reg_usa">Amerika Serikat</string>
+    <string name="reg_ina">Indonesia</string>
+    <string name="reg_jpn">Jepang</string>
+    <string name="reg_kor">Korea</string>
+    <string name="reg_chn">Tiongkok</string>
+    <string name="reg_ind">India</string>
+    <string name="favorite_movies">Daftar film favorit</string>
+    <string name="empty_list">Daftar kosong</string>
+    <string name="message_alarm_daily_reminder">Selamat Pagi. Yuk cek katalog film kita!</string>
+    <string name="label_activated">Pengingat diaktifkan setiap pukul 07.00</string>
+    <string name="label_activated_release">Pengingat rilis film diaktifkan setiap pukul 08.00</string>
+    <string name="label_deactivated">Non-aktif</string>
+    <string name="preferences_notification">Notifikasi</string>
+    <string name="label_reminder_daily_title">Notifikasi Pengingat Harian</string>
+    <string name="label_reminder_daily_summary">Aktifkan/matikan notifikasi harian</string>
+    <string name="label_reminder_playing_title">Notifikasi Film yang Rilis Hari ini</string>
+    <string name="label_reminder_playing_summary">Aktifkan/matikan notifikasi film yang rilis pada hari ini</string>
+    <string name="pref_change_language">Pengaturan Bahasa</string>
+    <string name="preferences_language_region">Bahasa dan Regional</string>
+    <string name="app_name">Avlam</string>
+    <string name="pref_change_region">Ubah Regional Film</string>
+    <string name="label_settings">Pengaturan</string>
 </resources>

@@ -1,4 +1,4 @@
-package id.amoled.mademovie.tools;
+package id.amoled.mademovie.asynctask;
 
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 import id.amoled.mademovie.BuildConfig;
+import id.amoled.mademovie.model.MovieItems;
 
 public class AsyncTaskMovieSearch extends AsyncTaskLoader<ArrayList<MovieItems>> {
 

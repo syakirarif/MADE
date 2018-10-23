@@ -1,4 +1,4 @@
-package id.amoled.mademovie.tools;
+package id.amoled.mademovie.asynctask;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 import id.amoled.mademovie.BuildConfig;
+import id.amoled.mademovie.model.MovieItems;
+import id.amoled.mademovie.pref.AppPreferences;
 
 public class AsyncTaskMoviePlaying extends AsyncTaskLoader<ArrayList<MovieItems>> {
 
@@ -23,9 +25,12 @@ public class AsyncTaskMoviePlaying extends AsyncTaskLoader<ArrayList<MovieItems>
 
     private URI uri;
 
+    private AppPreferences prefs;
+
 
     public AsyncTaskMoviePlaying(Context context) {
         super(context);
+        prefs = new AppPreferences(context);
         onContentChanged();
     }
 
@@ -45,7 +50,7 @@ public class AsyncTaskMoviePlaying extends AsyncTaskLoader<ArrayList<MovieItems>
         final ArrayList<MovieItems> movieItemses = new ArrayList<>();
 
         String urlFilmNowShowing = "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
-                BuildConfig.API_KEY + "&language=en-US&region=id";
+                BuildConfig.API_KEY + "&language=en-US&region=" + prefs.getRegion();
 
         client.get(urlFilmNowShowing, new AsyncHttpResponseHandler() {
 

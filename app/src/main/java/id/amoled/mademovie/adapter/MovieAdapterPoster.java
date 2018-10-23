@@ -1,7 +1,8 @@
-package id.amoled.mademovie.tools;
+package id.amoled.mademovie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-
 import java.util.ArrayList;
-
 import id.amoled.mademovie.MovieDetailActivity;
 import id.amoled.mademovie.R;
+import id.amoled.mademovie.model.MovieItems;
 
 public class MovieAdapterPoster extends RecyclerView.Adapter<MovieAdapterPoster.ViewHolder> {
 
@@ -85,12 +85,15 @@ public class MovieAdapterPoster extends RecyclerView.Adapter<MovieAdapterPoster.
 
                         Intent intentDetail = new Intent(context, MovieDetailActivity.class);
 
-                        intentDetail.putExtra("title", listMovie.get(pos).getTitle());
+                        intentDetail.putExtra("title", listMovie.get(pos).getOriginal_title());
                         intentDetail.putExtra("desc", listMovie.get(pos).getOverview());
                         intentDetail.putExtra("poster", listMovie.get(pos).getPoster_path());
                         intentDetail.putExtra("date", listMovie.get(pos).getRelease_date());
                         intentDetail.putExtra("rating", listMovie.get(pos).getVote_average());
                         intentDetail.putExtra("backdrop", listMovie.get(pos).getBackdrop());
+                        intentDetail.putExtra("movie_id", listMovie.get(pos).getMovieId());
+                        intentDetail.putExtra("alter_title", listMovie.get(pos).getTitle());
+                        intentDetail.putExtra("isFavoriteAdapter", false);
                         intentDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intentDetail);
                     }
@@ -99,24 +102,4 @@ public class MovieAdapterPoster extends RecyclerView.Adapter<MovieAdapterPoster.
             });
         }
     }
-
-    /*private View MyViewHolder(final int position, View view){
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentDetail = new Intent(context, MovieDetailActivity.class);
-
-                intentDetail.putExtra("title", list.get(position).getTitle());
-                intentDetail.putExtra("desc", list.get(position).getOverview());
-                intentDetail.putExtra("poster", list.get(position).getPoster_path());
-                intentDetail.putExtra("date", list.get(position).getRelease_date());
-                intentDetail.putExtra("rating", list.get(position).getVote_average());
-                intentDetail.putExtra("backdrop", list.get(position).getBackdrop());
-                intentDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intentDetail);
-            }
-        });
-
-        return view;
-    }*/
 }

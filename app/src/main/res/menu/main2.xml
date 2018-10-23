@@ -4,25 +4,14 @@
 
     <item
         android:id="@+id/search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="collapseActionView|ifRoom"
         android:icon="@drawable/ic_search_white_24dp"
-        android:title="@string/search_hint" />
+        android:title="@string/search_hint"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
 
     <item
-        android:icon="@drawable/ic_language_white_24dp"
-        android:title="@string/language"
-        app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/langEN"
-                android:title="@string/lang_en" />
-            <item
-                android:id="@+id/langID"
-                android:title="@string/lang_id" />
-            <item
-                android:id="@+id/langJP"
-                android:title="@string/lang_jp" />
-        </menu>
-    </item>
+        android:id="@+id/menu_settings"
+        android:title="@string/label_settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        app:showAsAction="ifRoom" />
 </menu>

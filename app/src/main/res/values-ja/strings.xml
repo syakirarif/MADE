@@ -4,7 +4,6 @@
     <string name="navigation_drawer_close">ナビゲーション・ドロワーを閉じる</string>
     <string name="nav_header_subtitle">日本版</string>
     <string name="nav_header_desc">ナビゲーションヘッダー</string>
-    <string name="action_settings">セッティング</string>
     <string name="search_hint">サーチフィルム</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -17,4 +16,27 @@
     <string name="lang_id">インドネシア語</string>
     <string name="lang_jp">日本語</string>
     <string name="search">サーチ</string>
+    <string name="favorite">本命</string>
+    <string name="reg_usa">アメリカ</string>
+    <string name="reg_ina">インドネシア</string>
+    <string name="reg_jpn">日本</string>
+    <string name="reg_kor">韓国</string>
+    <string name="reg_chn">中国</string>
+    <string name="reg_ind">インド</string>
+    <string name="favorite_movies">お気に入りの映画のリスト</string>
+    <string name="empty_list">空リスト</string>
+    <string name="message_alarm_daily_reminder">おはようございます。 私たちの映画カタログをチェックしよう</string>
+    <string name="app_name">アヴラム</string>
+    <string name="label_activated">毎週午前07時に通知</string>
+    <string name="label_activated_release">毎週午前08時に通知</string>
+    <string name="label_deactivated">失効した</string>
+    <string name="preferences_notification">お知らせ</string>
+    <string name="label_reminder_daily_title">毎日のリマインダ</string>
+    <string name="label_reminder_daily_summary">毎日アラームを有効または無効にする</string>
+    <string name="label_reminder_playing_title">再生中のムービー通知</string>
+    <string name="label_reminder_playing_summary">通知を有効または無効にする</string>
+    <string name="pref_change_language">言語設定</string>
+    <string name="preferences_language_region">言語と地域</string>
+    <string name="pref_change_region">ムービー領域を変更する</string>
+    <string name="label_settings">設定</string>
 </resources>

@@ -8,6 +8,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main2">
+    tools:showIn="@layout/app_bar_main">
 
 </LinearLayout>

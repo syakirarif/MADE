@@ -3,11 +3,11 @@ package id.amoled.mademovie;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,10 +22,17 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.Toast;
+
 import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import id.amoled.mademovie.fragment.FavoriteFragment;
 import id.amoled.mademovie.fragment.NowPlayingFragment;
 import id.amoled.mademovie.fragment.SearchFragment;
 import id.amoled.mademovie.fragment.UpcomingFragment;
+import id.amoled.mademovie.pref.AppPreferences;
+
 import android.content.res.Configuration;
 
 public class MainActivity extends AppCompatActivity
@@ -34,25 +41,49 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     private ActionBarDrawerToggle toggle;
-    private DrawerLayout drawer;
-    private Toolbar toolbar;
 
-    public static String lang = "en";
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    private boolean doubleBackToExitPressedOnce = false;
+
+    //public static String lang = "en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+
+        ButterKnife.bind(this);
+
+        AppPreferences pref = new AppPreferences(this);
+
         setSupportActionBar(toolbar);
 
-        drawer = findViewById(R.id.drawer_layout);
+        Boolean firstRun = pref.getFirstRun();
+
+        if (firstRun) {
+            pref.setLanguage("in");
+            pref.setRegion("id");
+            pref.setFirstRun(false);
+
+            setLocale(pref.getLanguage());
+        }
+
+        String lang = pref.getLanguage();
+        setLocale(lang);
+
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
@@ -62,6 +93,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frame_container, currentFragment)
                     .commit();
         }
+
     }
 
     public void setActionBar(String title) {
@@ -71,19 +103,35 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please tap TWICE to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        drawer = findViewById(R.id.drawer_layout);
+        //drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -97,10 +145,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main2, menu);
 
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) search.getActionView();
 
         searchView.setQueryHint(getResources().getString(R.string.search_hint));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -145,20 +199,32 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.langEN) {
-            lang = "en";
-            changeLocale(lang);//Change Locale on selection basis
+        /*if (id == R.id.langEN) {
+            //lang = "en";
+            pref.setLanguage("en");
+            pref.setRegion("us");
+            updateLocale();
             return true;
         } else if (id == R.id.langID) {
-            lang = "in";
-            changeLocale(lang);//Change Locale on selection basis
+            //lang = "in";
+            pref.setLanguage("in");
+            pref.setRegion("id");
+            updateLocale();
             return true;
 
         } else if (id == R.id.langJP) {
-            lang = "ja";
-            changeLocale(lang);//Change Locale on selection basis
+            //lang = "ja";
+            pref.setLanguage("ja");
+            pref.setRegion("jp");
+            updateLocale();
             return true;
 
+        }*/
+
+        if (id == R.id.menu_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -176,6 +242,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new NowPlayingFragment();
         } else if (id == R.id.nav_upcoming) {
             fragment = new UpcomingFragment();
+        } else if (id == R.id.nav_favorite) {
+            fragment = new FavoriteFragment();
         }
 
         if (fragment != null) {
@@ -204,7 +272,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void changeLocale(String lang) {
+    public void setLocale(String lang) {
         if (lang.equalsIgnoreCase(""))
             return;
         Locale myLocale = new Locale(lang);
@@ -213,12 +281,15 @@ public class MainActivity extends AppCompatActivity
         Configuration config = new Configuration();//get Configuration
         config.locale = myLocale;//set config locale as selected locale
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());//Update the config
-        updateTexts();//Update texts according to locale
+        //updateTexts();//Update texts according to locale
     }
 
-    private void updateTexts() {
+    /*public void updateLocale() {
+        lang = pref.getLanguage();
+
+        setLocale(lang);
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-    }
+    }*/
 }

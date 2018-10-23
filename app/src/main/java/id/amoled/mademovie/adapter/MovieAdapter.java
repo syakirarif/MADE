@@ -1,4 +1,4 @@
-package id.amoled.mademovie.tools;
+package id.amoled.mademovie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import id.amoled.mademovie.MovieDetailActivity;
 import id.amoled.mademovie.R;
+import id.amoled.mademovie.model.MovieItems;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -37,7 +38,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_movie, parent, false);
+        View itemRow = LayoutInflater
+                .from(parent.getContext()).inflate(R.layout.layout_movie, parent, false);
 
         return new ViewHolder(itemRow);
     }
@@ -107,13 +109,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     if (pos != RecyclerView.NO_POSITION) {
 
                         Intent intentDetail = new Intent(context, MovieDetailActivity.class);
-
-                        intentDetail.putExtra("title", listMovie.get(pos).getTitle());
+                        intentDetail.putExtra("title", listMovie.get(pos).getOriginal_title());
                         intentDetail.putExtra("desc", listMovie.get(pos).getOverview());
                         intentDetail.putExtra("poster", listMovie.get(pos).getPoster_path());
                         intentDetail.putExtra("date", listMovie.get(pos).getRelease_date());
                         intentDetail.putExtra("rating", listMovie.get(pos).getVote_average());
                         intentDetail.putExtra("backdrop", listMovie.get(pos).getBackdrop());
+                        intentDetail.putExtra("movie_id", listMovie.get(pos).getMovieId());
+                        intentDetail.putExtra("alter_title", listMovie.get(pos).getTitle());
+                        intentDetail.putExtra("isFavoriteAdapter", false);
                         intentDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intentDetail);
                     }

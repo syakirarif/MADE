@@ -15,29 +15,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import java.util.ArrayList;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.amoled.mademovie.MainActivity;
 import id.amoled.mademovie.R;
-import id.amoled.mademovie.tools.AsyncTaskMoviePlaying;
-import id.amoled.mademovie.tools.MovieAdapterPoster;
-import id.amoled.mademovie.tools.MovieItems;
+import id.amoled.mademovie.adapter.MovieAdapterPoster;
+import id.amoled.mademovie.asynctask.AsyncTaskMoviePlaying;
+import id.amoled.mademovie.model.MovieItems;
 
 public class NowPlayingFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>> {
 
-    private RecyclerView rvMovies;
+    @BindView(R.id.rv_list_movie_showing)
+    RecyclerView rvMovies;
+
+    @BindView(R.id.pb_playing)
+    ProgressBar progressBar;
+
     private MovieAdapterPoster adapter;
-    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_now_playing, container, false);
 
-        rvMovies = view.findViewById(R.id.rv_list_movie_showing);
+        ButterKnife.bind(this, view);
 
-        progressBar = view.findViewById(R.id.pb_playing);
+        adapter = new MovieAdapterPoster(getContext());
+
         progressBar.setVisibility(View.VISIBLE);
 
         showMovies();
@@ -60,7 +65,6 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
         } else {
             rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         }
-
 
         rvMovies.setItemAnimator(new DefaultItemAnimator());
         rvMovies.setAdapter(adapter);

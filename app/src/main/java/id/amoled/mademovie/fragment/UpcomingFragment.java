@@ -1,7 +1,6 @@
 package id.amoled.mademovie.fragment;
 
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,24 +15,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import java.util.ArrayList;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.amoled.mademovie.MainActivity;
 import id.amoled.mademovie.R;
-import id.amoled.mademovie.tools.AsyncTaskMovieUpcoming;
-import id.amoled.mademovie.tools.MovieAdapterPoster;
-import id.amoled.mademovie.tools.MovieItems;
+import id.amoled.mademovie.asynctask.AsyncTaskMovieUpcoming;
+import id.amoled.mademovie.adapter.MovieAdapterPoster;
+import id.amoled.mademovie.model.MovieItems;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class UpcomingFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<MovieItems>> {
 
-    private RecyclerView rvMovies;
+    @BindView(R.id.rv_list_movie_upcoming)
+    RecyclerView rvMovies;
+
     private MovieAdapterPoster adapter;
 
-    private ProgressBar progressBar;
+    @BindView(R.id.pb_upcoming)
+    ProgressBar progressBar;
 
     public UpcomingFragment() {
         // Required empty public constructor
@@ -46,10 +48,8 @@ public class UpcomingFragment extends Fragment implements LoaderManager.LoaderCa
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upcoming, container, false);
 
-        progressBar = view.findViewById(R.id.pb_upcoming);
+        ButterKnife.bind(this, view);
         progressBar.setVisibility(View.VISIBLE);
-
-        rvMovies = view.findViewById(R.id.rv_list_movie_upcoming);
 
         showMovies();
         return view;

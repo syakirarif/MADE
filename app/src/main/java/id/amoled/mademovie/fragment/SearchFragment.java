@@ -14,14 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import java.util.ArrayList;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.amoled.mademovie.MainActivity;
 import id.amoled.mademovie.R;
-import id.amoled.mademovie.tools.AsyncTaskMovieSearch;
-import id.amoled.mademovie.tools.MovieAdapter;
-import id.amoled.mademovie.tools.MovieItems;
+import id.amoled.mademovie.asynctask.AsyncTaskMovieSearch;
+import id.amoled.mademovie.adapter.MovieAdapter;
+import id.amoled.mademovie.model.MovieItems;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +30,11 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
 
     private MovieAdapter adapter;
 
-    private ProgressBar progressBar;
+    @BindView(R.id.pb_search)
+    ProgressBar progressBar;
+
+    @BindView(R.id.rv_list_movie_search)
+    RecyclerView rvMovies;
 
     private static final String TAG = "SearchFragment";
 
@@ -47,9 +51,8 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        RecyclerView rvMovies = view.findViewById(R.id.rv_list_movie_search);
+        ButterKnife.bind(this, view);
 
-        progressBar = view.findViewById(R.id.pb_search);
         progressBar.setVisibility(View.VISIBLE);
 
         if (getArguments() != null) {
