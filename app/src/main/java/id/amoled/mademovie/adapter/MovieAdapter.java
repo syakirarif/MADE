@@ -65,7 +65,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.tvRating.setText(getListMovie().get(position).getVote_average());
 
         Glide.with(this.context)
-                .load("http://image.tmdb.org/t/p/w185" + urlPoster)
+                .load("https://image.tmdb.org/t/p/w185" + urlPoster)
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imgPoster);
 

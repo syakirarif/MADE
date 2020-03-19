@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/img_poster_movie"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="1dp"
+            android:contentDescription="@string/film_poster"
+            android:scaleType="centerCrop"
+            tools:src="@color/colorAccent" />
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

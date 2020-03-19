@@ -148,7 +148,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             if (!backdrop.equals("null")) {
                 Glide.with(MovieDetailActivity.this)
-                        .load("http://image.tmdb.org/t/p/w780" + backdrop)
+                        .load("https://image.tmdb.org/t/p/w780" + backdrop)
                         .into(imgBackdrop);
             } else {
                 Glide.with(MovieDetailActivity.this)
@@ -158,7 +158,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             }
 
             Glide.with(MovieDetailActivity.this)
-                    .load("http://image.tmdb.org/t/p/w300" + poster)
+                    .load("https://image.tmdb.org/t/p/w300" + poster)
                     .apply(RequestOptions.centerCropTransform())
                     .into(imgPoster);
 

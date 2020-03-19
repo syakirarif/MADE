@@ -50,7 +50,7 @@ public class MovieAdapterPoster extends RecyclerView.Adapter<MovieAdapterPoster.
         final String urlPoster = getListMovie().get(position).getPoster_path();
 
         Glide.with(this.context)
-                .load("http://image.tmdb.org/t/p/w500" + urlPoster)
+                .load("https://image.tmdb.org/t/p/w500" + urlPoster)
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imgPoster);
     }
